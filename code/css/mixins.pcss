@@ -1,0 +1,81 @@
+@define-mixin extended-row $color {
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    width: 100vw;
+    height: 100%;
+    z-index: -9;
+    position: absolute;
+    top: 0;
+    background: $color;
+  }
+
+  &:before { left: 0; }
+  &:after { right: 0; }
+}
+
+@define-mixin extended-table-row $color {
+  td:first-child:before,
+  td:last-child:after {
+    content: '';
+    display: block;
+    width: 100vw;
+    height: 100%;
+    z-index: -9;
+    position: absolute;
+    top: 0;
+    background: $color;
+  }
+
+  td:first-child:before { left: 0; }
+  td:last-child:after { right: 0; }
+}
+
+@define-mixin box-w-shadow $shadow {
+  transition: box-shadow .2s ease;
+
+  &:hover {
+    box-shadow: $shadow;
+  }
+}
+
+@define-mixin box-w-ext-shadow $width, $height, $shadow {
+  &:before {
+    content: '';
+    display: block;
+    width: calc(100% + $width * 2);
+    height: calc(100% + $height * 2);
+    left: -$width;
+    top: -$height;
+    border-radius: $border-radius;
+    position: absolute;
+    transition: box-shadow .2s ease;
+  }
+
+  &:hover {
+    &:before {
+      box-shadow: $shadow;
+    }
+  }
+}
+
+@define-mixin text-ellipsis $max-width {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: $max-width;
+}
+
+@define-mixin bw-image {
+  filter: url("data:image/svg+xml;utf8,&lt;svg xmlns=\'http://www.w3.org/2000/svg\'&gt;&lt;filter id=\'grayscale\'&gt;&lt;feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/&gt;&lt;/filter&gt;&lt;/svg&gt;#grayscale"); /* Firefox 10+, Firefox on Android */
+  filter: gray; /* IE6-9 */
+  -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+}
+
+@define-mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
