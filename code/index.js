@@ -7,6 +7,8 @@ import './css/reset';
 import './css/typography';
 import './css/helpers';
 
+import 'antd/dist/antd.css';
+
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import client from './client';

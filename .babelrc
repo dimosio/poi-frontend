@@ -3,7 +3,15 @@
   "plugins": [
     "syntax-dynamic-import",
     "transform-decorators-legacy",
-    "lodash"
+    "lodash",
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "libraryDirectory": "es",
+        "style": "css"
+      }
+    ]
   ],
   "env": {
     "development": {
