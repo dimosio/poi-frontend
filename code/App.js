@@ -70,7 +70,7 @@ export default class SiderDemo extends React.Component {
               </Menu.Item>
               <Menu.Item key='4'>
                 <span>
-                  <Link style={{ color: '#fff' }} to='/my-pois'>
+                  <Link style={{ color: '#fff' }} to='/account-info'>
                     Account info
                   </Link>
                 </span>
