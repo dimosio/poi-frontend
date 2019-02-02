@@ -1,8 +1,7 @@
-import { Button } from 'antd';
-import './style';
+import Map from '../map/index';
 
 export default class Home extends React.Component {
   render() {
-    return <div><Button>seleo</Button></div>;
+    return <div>{/* <Map /> */}</div>;
   }
 }
