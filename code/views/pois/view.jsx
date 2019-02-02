@@ -1,13 +1,27 @@
 import { graphql, compose } from 'react-apollo';
 import { Row, Col } from 'antd';
 import { FETCH_POI } from 'gql/poi';
+import QRCode from 'qrcode';
 
 class PoiView extends React.Component {
   static propTypes = {
     fetchPoi: PropTypes.object
   };
 
+  state = {
+    qrCode: null
+  };
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.fetchPoi.pois) {
+      QRCode.toDataURL(nextProps.fetchPoi.pois[0].id.toString(), (err, url) => {
+        this.setState({ qrCode: url });
+      });
+    }
+  }
+
   render() {
+    const { qrCode } = this.state;
     const { fetchPoi } = this.props;
     if (!fetchPoi.pois) {
       return null;
@@ -26,10 +40,15 @@ class PoiView extends React.Component {
             </Col>
           </Row>
         )}
-        <Row>
-          <Col span={24}>
+        <Row type='flex' justify='space-between' align='middle'>
+          <Col>
             <h1>{poi.name}</h1>
           </Col>
+          {qrCode && (
+            <Col>
+              <img src={qrCode} alt={poi.name} />
+            </Col>
+          )}
         </Row>
         {poi.info_general && (
           <Row>
