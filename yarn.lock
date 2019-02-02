@@ -6460,6 +6460,10 @@ ms@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.1.tgz#30a5864eb3ebb0a66f2ebe6d727af06a09d86e0a"
 
+multi-clamp@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/multi-clamp/-/multi-clamp-1.1.0.tgz#9d078e3096174a2fb9086a7b7cf19d15c3415862"
+
 multicast-dns-service-types@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/multicast-dns-service-types/-/multicast-dns-service-types-1.1.0.tgz#899f11d9686e5e05cb91b35d5f0e63b773cfc901"
@@ -8150,6 +8154,13 @@ react-lazy-load@^3.0.13:
 react-lifecycles-compat@^3.0.2, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
+
+react-multi-clamp@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-multi-clamp/-/react-multi-clamp-1.1.0.tgz#30e2340293b6f83a1e8ef039de82964ec8e9d976"
+  dependencies:
+    multi-clamp "^1.1.0"
+    prop-types "^15.6.0"
 
 react-proxy@^1.1.7:
   version "1.1.8"

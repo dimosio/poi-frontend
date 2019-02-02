@@ -89,6 +89,7 @@
     "react-apollo": "^2.1.4",
     "react-dom": "16.4.1",
     "react-flexbox-grid": "^2.1.2",
+    "react-multi-clamp": "^1.1.0",
     "react-responsive": "^5.0.0",
     "react-router-dom": "^4.3.1",
     "unfetch": "^3.0.0"
