@@ -4,6 +4,7 @@
     "syntax-dynamic-import",
     "transform-decorators-legacy",
     "lodash",
+    ["import", { "libraryName": "antd", "style": true }],
     [
       "import",
       {
@@ -15,9 +16,7 @@
   ],
   "env": {
     "development": {
-      "plugins": [
-        "react-hot-loader/babel"
-      ]
+      "plugins": ["react-hot-loader/babel"]
     }
   }
 }

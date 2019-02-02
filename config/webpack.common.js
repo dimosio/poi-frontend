@@ -1,26 +1,30 @@
 const webpack = require('webpack');
 const path = require('path');
+const fs = require('fs');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const lessToJs = require('less-vars-to-js');
+const themeVariables = lessToJs(
+  fs.readFileSync(path.join(__dirname, '../code/theme.less'), 'utf8')
+);
 
 const cssLoader = {
   loader: 'css-loader',
   options: { importLoaders: 1, include: /flexboxgrid/ }
 };
-const postcssLoader = {
-  loader: 'postcss-loader',
-  options: {
-    ident: 'postcss',
-    config: {
-      path: path.resolve(__dirname, 'postcss.config.js')
-    }
-  }
-};
+
 const webpackCSSLoader = [
   { loader: 'style-loader' },
   process.env.NODE_ENV === 'production' ? MiniCssExtractPlugin.loader : null,
   cssLoader,
-  postcssLoader
+  {
+    loader: 'less-loader', // antd overrides
+    options: {
+      modifyVars: themeVariables,
+      javascriptEnabled: true
+    }
+  }
 ].filter(Boolean);
 
 module.exports = {
@@ -41,7 +45,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'graphql-tag/loader'
       },
-      { test: /\.(css|pcss|scss)$/, use: webpackCSSLoader },
+      { test: /\.(css|pcss|less)$/, use: webpackCSSLoader },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'url-loader?limit=10000&minetype=application/font-woff'

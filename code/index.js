@@ -2,12 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
-import 'normalize.css';
-import './css/reset';
-import './css/typography';
-import './css/helpers';
-
-import 'antd/dist/antd.css';
 
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
