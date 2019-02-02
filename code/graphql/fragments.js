@@ -6,6 +6,7 @@ export const USER_DATA = gql`
     username
     password
     email
+    avatar
   }
 `;
 
@@ -19,5 +20,6 @@ export const POI_DATA = gql`
     info_others
     info_references
     website
+    cover_image
   }
 `;

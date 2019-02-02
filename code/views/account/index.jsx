@@ -9,7 +9,6 @@ class AccountInfo extends React.Component {
   };
 
   render() {
-    console.info(this.props);
     const { getFieldDecorator } = this.props.form;
     const formItemLayout = {
       labelCol: {

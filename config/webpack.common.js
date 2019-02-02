@@ -104,7 +104,8 @@ module.exports = {
     ],
     alias: {
       views: path.join(__dirname, '../code/views'),
-      utils: path.join(__dirname, '../code/utils')
+      utils: path.join(__dirname, '../code/utils'),
+      gql: path.join(__dirname, '../code/graphql')
     },
     unsafeCache: true
   },

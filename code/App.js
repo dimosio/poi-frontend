@@ -37,27 +37,23 @@ export default class SiderDemo extends React.Component {
         >
           <Menu theme='dark' defaultSelectedKeys={['1']} mode='inline'>
             <Menu.Item key='1'>
-              <Icon type='pushpin' />
-              <span>
-                <Link style={{ color: '#fff' }} to='/'>
-                  Pois
-                </Link>
-              </span>
+              <Link style={{ color: '#fff' }} to='/'>
+                <Icon type='pushpin' />
+                <span>Pois</span>
+              </Link>
             </Menu.Item>
             <Menu.Item key='2'>
-              <Icon type='crown' />
-              <span>
-                <Link style={{ color: '#fff' }} to='/contribute'>
-                  Contribute
-                </Link>
-              </span>
+              <Link style={{ color: '#fff' }} to='/contribute'>
+                <Icon type='crown' />
+                <span>Contribute</span>
+              </Link>
             </Menu.Item>
             <SubMenu
               key='sub1'
               title={
                 <span>
                   <Icon type='user' />
-                  <span style={{ color: '#fff'}}>Profile</span>
+                  <span style={{ color: '#fff' }}>Profile</span>
                 </span>
               }
             >
@@ -77,18 +73,16 @@ export default class SiderDemo extends React.Component {
               </Menu.Item>
             </SubMenu>
             <Menu.Item key='5'>
-              <Icon type='heart' />
-              <span>
-                <Link style={{ color: '#fff' }} to='/feedback'>
-                  Provide feedback
-                </Link>
-              </span>
+              <Link style={{ color: '#fff' }} to='/feedback'>
+                <Icon type='heart' />
+                <span>Provide feedback</span>
+              </Link>
             </Menu.Item>
           </Menu>
         </Sider>
         <Layout>
           <Header style={{ background: '#fff', padding: 0 }}>
-            <div className='logo'>DIMOS.IO</div>
+            <h1 className='logo'>DIMOS.IO</h1>
           </Header>
           <Content style={{ margin: '16px' }}>
             <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
