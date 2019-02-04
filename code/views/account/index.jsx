@@ -5,19 +5,24 @@ import { fetchUserToProps } from '../../utils';
 
 class AccountInfo extends React.Component {
   static propTypes = {
-    form: PropTypes.object
+    form: PropTypes.object,
+    loggedInUser: PropTypes.object
   };
 
   render() {
+    const { loggedInUser } = this.props;
     const { getFieldDecorator } = this.props.form;
+    if (!loggedInUser.users) {
+      return null;
+    }
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
         sm: { span: 8 }
       },
       wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 16 }
+        xs: { span: 12 },
+        sm: { span: 12 }
       }
     };
     const tailFormItemLayout = {
@@ -32,10 +37,12 @@ class AccountInfo extends React.Component {
         }
       }
     };
+    const user = loggedInUser.users[0];
     return (
       <Form onSubmit={this.handleSubmit}>
         <Form.Item {...formItemLayout} label={<span>Username</span>}>
           {getFieldDecorator('username', {
+            initialValue: user.username,
             rules: [
               {
                 required: true,
@@ -46,6 +53,7 @@ class AccountInfo extends React.Component {
         </Form.Item>
         <Form.Item {...formItemLayout} label={<span>Email</span>}>
           {getFieldDecorator('email', {
+            initialValue: user.email,
             rules: [
               {
                 required: true,
@@ -56,23 +64,25 @@ class AccountInfo extends React.Component {
         </Form.Item>
         <Form.Item {...formItemLayout} label={<span>Password</span>}>
           {getFieldDecorator('password', {
+            initialValue: user.password,
             rules: [
               {
                 required: true,
                 message: 'Please input your password'
               }
             ]
-          })(<Input />)}
+          })(<Input type='password' />)}
         </Form.Item>
         <Form.Item {...formItemLayout} label={<span>Repeat password</span>}>
           {getFieldDecorator('repeat-password', {
+            initialValue: user.password,
             rules: [
               {
                 required: true,
                 message: 'Please input your password'
               }
             ]
-          })(<Input />)}
+          })(<Input type='password' />)}
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
           <Button type='primary' htmlType='submit'>
@@ -85,5 +95,5 @@ class AccountInfo extends React.Component {
 }
 
 export default compose(fetchUserToProps())(
-  Form.create({ name: 'poi_insert' })(AccountInfo)
+  Form.create({ name: 'account_info' })(AccountInfo)
 );

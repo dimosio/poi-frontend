@@ -4,19 +4,37 @@ const { TextArea } = Input;
 
 class PoiInsertForm extends React.Component {
   static propTypes = {
-    form: PropTypes.object
+    form: PropTypes.object,
+    poi: PropTypes.object,
+    onSubmit: PropTypes.func
   };
 
   state = {
     confirmDirty: false
   };
 
+  static defaultProps = {
+    poi: {
+      id: null,
+      name: '',
+      info_general: '',
+      info_events: '',
+      info_history: '',
+      info_others: '',
+      info_references: '',
+      website: '',
+      cover_image: ''
+    }
+  };
+
   handleSubmit = e => {
+    const { onSubmit } = this.props;
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
+      if (err) {
+        return;
       }
+      onSubmit(values);
     });
   };
 
@@ -34,8 +52,8 @@ class PoiInsertForm extends React.Component {
         sm: { span: 8 }
       },
       wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 16 }
+        xs: { span: 12 },
+        sm: { span: 12 }
       }
     };
     const tailFormItemLayout = {
@@ -51,10 +69,13 @@ class PoiInsertForm extends React.Component {
       }
     };
 
+    const { poi } = this.props;
+
     return (
       <Form onSubmit={this.handleSubmit}>
         <Form.Item {...formItemLayout} label='Name'>
           {getFieldDecorator('name', {
+            initialValue: poi.name,
             rules: [
               {
                 required: true,
@@ -64,29 +85,48 @@ class PoiInsertForm extends React.Component {
           })(<Input />)}
         </Form.Item>
         <Form.Item {...formItemLayout} label={<span>General</span>}>
-          {getFieldDecorator('info_general')(<TextArea />)}
+          {getFieldDecorator('info_general', {
+            initialValue: poi.info_general
+          })(<TextArea />)}
         </Form.Item>
         <Form.Item {...formItemLayout} label={<span>Architecture</span>}>
-          {getFieldDecorator('info_general')(<TextArea />)}
+          {getFieldDecorator('info_architecture', {
+            initialValue: poi.info_architecture
+          })(<TextArea />)}
         </Form.Item>
         <Form.Item {...formItemLayout} label={<span>History</span>}>
-          {getFieldDecorator('info_history')(<TextArea />)}
+          {getFieldDecorator('info_history', {
+            initialValue: poi.info_history
+          })(<TextArea />)}
         </Form.Item>
         <Form.Item {...formItemLayout} label={<span>Events</span>}>
-          {getFieldDecorator('info_events')(<TextArea />)}
+          {getFieldDecorator('info_events', {
+            initialValue: poi.info_events
+          })(<TextArea />)}
         </Form.Item>
         <Form.Item {...formItemLayout} label={<span>Others</span>}>
-          {getFieldDecorator('info_others')(<TextArea />)}
+          {getFieldDecorator('info_others', {
+            initialValue: poi.info_others
+          })(<TextArea />)}
         </Form.Item>
         <Form.Item {...formItemLayout} label={<span>References</span>}>
-          {getFieldDecorator('info_references')(<TextArea />)}
+          {getFieldDecorator('info_references', {
+            initialValue: poi.info_references
+          })(<TextArea />)}
         </Form.Item>
         <Form.Item {...formItemLayout} label={<span>Website</span>}>
-          {getFieldDecorator('website')(<Input />)}
+          {getFieldDecorator('website', {
+            initialValue: poi.website
+          })(<Input />)}
+        </Form.Item>
+        <Form.Item {...formItemLayout} label={<span>Cover image</span>}>
+          {getFieldDecorator('cover_image', {
+            initialValue: poi.cover_image
+          })(<Input />)}
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
           <Button type='primary' htmlType='submit'>
-            Register
+            {poi.id ? 'Update' : 'Create'}
           </Button>
         </Form.Item>
       </Form>

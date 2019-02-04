@@ -1,15 +1,18 @@
+import { withRouter } from 'react-router-dom';
 import { graphql, compose } from 'react-apollo';
-import { Row, Col } from 'antd';
+import { Row, Col, Modal, Button } from 'antd';
 import { FETCH_POI } from 'gql/poi';
 import QRCode from 'qrcode';
 
 class PoiView extends React.Component {
   static propTypes = {
-    fetchPoi: PropTypes.object
+    fetchPoi: PropTypes.object,
+    history: PropTypes.func
   };
 
   state = {
-    qrCode: null
+    qrCode: null,
+    visible: false
   };
 
   componentWillReceiveProps(nextProps) {
@@ -20,9 +23,11 @@ class PoiView extends React.Component {
     }
   }
 
+  onEditClick = () => {};
+
   render() {
     const { qrCode } = this.state;
-    const { fetchPoi } = this.props;
+    const { fetchPoi, history } = this.props;
     if (!fetchPoi.pois) {
       return null;
     }
@@ -44,11 +49,22 @@ class PoiView extends React.Component {
           <Col>
             <h1>{poi.name}</h1>
           </Col>
-          {qrCode && (
-            <Col>
-              <img src={qrCode} alt={poi.name} />
-            </Col>
-          )}
+          <Col>
+            <Button.Group>
+              <Button
+                icon='edit'
+                onClick={() => history.push(`/poi/${poi.id}/edit`)}
+              >
+                Edit
+              </Button>
+              <Button
+                icon='qrcode'
+                onClick={() => this.setState({ visible: true })}
+              >
+                QR Code
+              </Button>
+            </Button.Group>
+          </Col>
         </Row>
         {poi.info_general && (
           <Row>
@@ -90,12 +106,21 @@ class PoiView extends React.Component {
             </Col>
           </Row>
         )}
+        <Modal
+          title=''
+          visible={this.state.visible}
+          onOk={() => this.setState({ visible: false })}
+          onCancel={() => this.setState({ visible: false })}
+        >
+          <img style={{ width: '100%' }} src={qrCode} alt={poi.name} />
+        </Modal>
       </div>
     );
   }
 }
 
 export default compose(
+  withRouter,
   graphql(FETCH_POI, {
     name: 'fetchPoi',
     options: props => ({
