@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import { POI_DATA } from './fragments';
 
 export const FETCH_POI = gql`
-  query pois($id: Int) {
+  query pois($id: Int!) {
     pois(where: { id: { _eq: $id } }) {
       ...poi_data
     }
@@ -28,6 +28,7 @@ export const INSERT_POI = gql`
     $info_others: String
     $info_references: String
     $website: String
+    $cover_image: String
   ) {
     insert_pois(
       _set: {
@@ -38,11 +39,15 @@ export const INSERT_POI = gql`
         info_others: $info_others
         info_references: $info_references
         website: $website
+        cover_image: $cover_image
       }
     ) {
-      affected_rows
+      returning {
+        ...poi_data
+      }
     }
   }
+  ${POI_DATA}
 `;
 
 export const UPDATE_POI = gql`
@@ -55,6 +60,7 @@ export const UPDATE_POI = gql`
     $info_others: String
     $info_references: String
     $website: String
+    $cover_image: String
   ) {
     update_pois(
       where: { id: { _eq: $id } }
@@ -66,9 +72,15 @@ export const UPDATE_POI = gql`
         info_others: $info_others
         info_references: $info_references
         website: $website
+        cover_image: $cover_image
       }
-    )
+    ) {
+      returning {
+        ...poi_data
+      }
+    }
   }
+  ${POI_DATA}
 `;
 
 export const DELETE_POI = gql`
