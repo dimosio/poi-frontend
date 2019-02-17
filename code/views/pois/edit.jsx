@@ -2,7 +2,7 @@ import { withRouter } from 'react-router-dom';
 import { Row, Col } from 'antd';
 import { WrappedPoiInsertForm } from './form';
 import { graphql, compose } from 'react-apollo';
-import { UPDATE_POI, FETCH_POI, FETCH_POIS } from 'gql/poi';
+import { UPDATE_POI, FETCH_POI } from 'gql/poi';
 
 class PoiEdit extends React.Component {
   static propTypes = {

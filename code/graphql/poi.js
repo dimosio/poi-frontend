@@ -27,20 +27,26 @@ export const INSERT_POI = gql`
     $info_history: String
     $info_others: String
     $info_references: String
+    $info_events: String
     $website: String
     $cover_image: String
+    $authorId: Int
   ) {
     insert_pois(
-      _set: {
-        name: $name
-        info_general: $info_general
-        info_architecture: $info_architecture
-        info_history: $info_history
-        info_others: $info_others
-        info_references: $info_references
-        website: $website
-        cover_image: $cover_image
-      }
+      objects: [
+        {
+          name: $name
+          info_general: $info_general
+          info_architecture: $info_architecture
+          info_history: $info_history
+          info_others: $info_others
+          info_events: $info_events
+          info_references: $info_references
+          website: $website
+          cover_image: $cover_image
+          authorId: $authorId
+        }
+      ]
     ) {
       returning {
         ...poi_data
@@ -58,6 +64,7 @@ export const UPDATE_POI = gql`
     $info_architecture: String
     $info_history: String
     $info_others: String
+    $info_events: String
     $info_references: String
     $website: String
     $cover_image: String
@@ -70,6 +77,7 @@ export const UPDATE_POI = gql`
         info_architecture: $info_architecture
         info_history: $info_history
         info_others: $info_others
+        info_events: $info_events
         info_references: $info_references
         website: $website
         cover_image: $cover_image
