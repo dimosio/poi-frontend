@@ -2,7 +2,7 @@ import { withRouter } from 'react-router-dom';
 import { Row, Col } from 'antd';
 import { WrappedPoiInsertForm } from './form';
 import { graphql, compose } from 'react-apollo';
-import { UPDATE_POI, FETCH_POI, FETCH_POIS } from 'gql/poi';
+import { UPDATE_POI, FETCH_POI } from 'gql/poi';
 
 class PoiEdit extends React.Component {
   static propTypes = {
@@ -60,21 +60,19 @@ class PoiEdit extends React.Component {
       },
       update: (store, { data }) => {
         try {
-          console.info(id, data);
           const stored = store.readQuery({
             query: FETCH_POI,
             variables: {
               id
             }
           });
-          console.info(stored);
-          // const newCollection = [
-          //   ...stored.pois,
-          //   ...data.insert_pois.returning[0]
-          // ];
-          // stored.pois = newCollection;
-          // store.writeQuery({ query: FETCH_POIS, data: stored });
-          // history.push('/');
+          const newCollection = [
+            ...stored.pois,
+            ...data.update_pois.returning[0]
+          ];
+          stored.pois = newCollection;
+          store.writeQuery({ query: FETCH_POI, data: stored });
+          history.push('/');
         } catch (e) {
           throw e;
         }
@@ -110,7 +108,7 @@ export default compose(
     name: 'fetchPoi',
     options: props => ({
       variables: {
-        id: props.match.params.id
+        id: parseInt(props.match.params.id)
       }
     })
   })
