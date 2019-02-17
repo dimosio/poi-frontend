@@ -38,7 +38,7 @@ class PoiView extends React.Component {
           <Row>
             <Col span={24}>
               <img
-                style={{ width: '100%', marginBottom: '16px' }}
+                style={{ maxWidth: 260, width: '100%', marginBottom: '16px' }}
                 src={poi.cover_image}
                 alt={poi.name}
               />
