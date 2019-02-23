@@ -16,6 +16,7 @@ export const POI_DATA = gql`
     name
     info_general
     info_architecture
+    info_events
     info_history
     info_others
     info_references

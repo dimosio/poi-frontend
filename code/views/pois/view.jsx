@@ -7,7 +7,7 @@ import QRCode from 'qrcode';
 class PoiView extends React.Component {
   static propTypes = {
     fetchPoi: PropTypes.object,
-    history: PropTypes.func
+    history: PropTypes.object
   };
 
   state = {
