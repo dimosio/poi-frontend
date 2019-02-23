@@ -1,7 +1,23 @@
 @import "~antd/dist/antd.less";
 
 .logo {
-  color: @primary-color;
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+  z-index: 999;
+
+  img {
+    width: 220px;
+  }
+}
+
+.menu {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  z-index: 999;
+  background-color: fade(@secondary-color, 75%);
+  color: #fff;
   font-weight: 900;
-  padding-left: @padding-md;
+  font-size: 24px;
 }

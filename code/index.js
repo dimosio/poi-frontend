@@ -6,8 +6,7 @@ import { ApolloProvider } from 'react-apollo';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import client from './client';
-import Home from './views/home';
-import PoisList from './views/pois/list';
+import Map from './views/map';
 import PoiView from './views/pois/view';
 import PoiCreate from './views/pois/create';
 import PoiEdit from './views/pois/edit';
@@ -22,9 +21,9 @@ ReactDOM.render(
     <BrowserRouter>
       <App>
         <Switch>
-          <Route path='/' exact component={PoisList} />
+          <Route path='/' exact component={Map} />
           <Route path='/contribute' exact component={Contribute} />
-          <Route path='/my-pois' exact component={Home} />
+          <Route path='/my-pois' exact component={Map} />
           <Route path='/poi/create' exact component={PoiCreate} />
           <Route path='/poi/:id' exact component={PoiView} />
           <Route path='/poi/:id/edit' exact component={PoiEdit} />
