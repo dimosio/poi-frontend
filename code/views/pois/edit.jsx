@@ -66,7 +66,6 @@ class PoiEdit extends React.Component {
               id
             }
           });
-          console.log(stored);
 
 
           const newCollection = [
@@ -74,7 +73,6 @@ class PoiEdit extends React.Component {
           ];
           stored.pois = newCollection;
           store.writeQuery({ query: FETCH_POI, data: stored, variables: { id } });
-          console.log(stored);
           history.push('/');
         } catch (e) {
           throw e;
