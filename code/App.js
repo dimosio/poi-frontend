@@ -71,8 +71,15 @@ export default class SiderDemo extends React.Component {
                   </Link>
                 </span>
               </Menu.Item>
+              <Menu.Item key='5'>
+                <span>
+                  <Link style={{ color: '#fff' }} to='/signup'>
+                    Signup
+                  </Link>
+                </span>
+              </Menu.Item>
             </SubMenu>
-            <Menu.Item key='5'>
+            <Menu.Item key='6'>
               <Link style={{ color: '#fff' }} to='/feedback'>
                 <Icon type='heart' />
                 <span>Provide feedback</span>

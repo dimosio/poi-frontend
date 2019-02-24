@@ -1,64 +1,26 @@
-import { compose } from 'react-apollo';
 import { Form, Input, Button } from 'antd';
 
-import { fetchUserToProps } from '../../utils';
 
-
-import { Modal, Button } from 'antd';
-
-class App extends React.Component {
-  state = { visible: false }
-
-  showModal = () => {
-    this.setState({
-      visible: true,
-    });
-  }
-
-  handleOk = (e) => {
-    console.log(e);
-    this.setState({
-      visible: false,
-    });
-  }
-
-  handleCancel = (e) => {
-    console.log(e);
-    this.setState({
-      visible: false,
-    });
-  }
-
-  render() {
-    return (
-      <div>
-        <Button type="primary" onClick={this.showModal}>
-          Open Modal
-        </Button>
-        <Modal
-          title="Basic Modal"
-          visible={this.state.visible}
-          onOk={this.handleOk}
-          onCancel={this.handleCancel}
-        >
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-        </Modal>
-      </div>
-    );
-  }
-}
-
-ReactDOM.render(<App />, mountNode);
-class Signup extends React.Component {
+class SignupForm extends React.Component {
   static propTypes = {
     form: PropTypes.object,
-    user: PropTypes.object
+    user: PropTypes.object,
+    onSubmit: PropTypes.func
+  };
+
+
+  handleSubmit = e => {
+    const { onSubmit } = this.props;
+    e.preventDefault();
+    this.props.form.validateFieldsAndScroll((err, values) => {
+      if (err) {
+        return;
+      }
+      onSubmit(values);
+    });
   };
 
   render() {
-    const { user } = this.props;
     const { getFieldDecorator } = this.props.form;
     // if (!loggedInUser.users) {
     //   return null;
@@ -90,7 +52,7 @@ class Signup extends React.Component {
       <Form onSubmit={this.handleSubmit}>
         <Form.Item {...formItemLayout} label={<span>Username</span>}>
           {getFieldDecorator('username', {
-            initialValue: user.username,
+            initialValue: '',
             rules: [
               {
                 required: true,
@@ -101,7 +63,7 @@ class Signup extends React.Component {
         </Form.Item>
         <Form.Item {...formItemLayout} label={<span>Email</span>}>
           {getFieldDecorator('email', {
-            initialValue: user.email,
+            initialValue: '',
             rules: [
               {
                 required: true,
@@ -112,18 +74,7 @@ class Signup extends React.Component {
         </Form.Item>
         <Form.Item {...formItemLayout} label={<span>Password</span>}>
           {getFieldDecorator('password', {
-            initialValue: user.password,
-            rules: [
-              {
-                required: true,
-                message: 'Please input your password'
-              }
-            ]
-          })(<Input type='password' />)}
-        </Form.Item>
-        <Form.Item {...formItemLayout} label={<span>Repeat password</span>}>
-          {getFieldDecorator('repeat-password', {
-            initialValue: user.password,
+            initialValue: '',
             rules: [
               {
                 required: true,
@@ -134,7 +85,7 @@ class Signup extends React.Component {
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
           <Button type='primary' htmlType='submit'>
-            Update
+            Sign up
           </Button>
         </Form.Item>
       </Form>
@@ -142,6 +93,6 @@ class Signup extends React.Component {
   }
 }
 
-export default compose(fetchUserToProps())(
-  Form.create({ name: 'signup_info' })(Signup)
+export const WrappedSignupForm = Form.create({ name: 'user_insert' })(
+  SignupForm
 );
