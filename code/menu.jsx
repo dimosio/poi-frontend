@@ -32,7 +32,7 @@ export default class AppMenu extends React.Component {
   render() {
     return (
       <Dropdown className='menu' overlay={menu}>
-        <div>Information</div>
+        <div>Menu</div>
       </Dropdown>
     );
   }

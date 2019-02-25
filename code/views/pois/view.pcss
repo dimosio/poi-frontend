@@ -1,0 +1,60 @@
+.poi__intro {
+  margin: auto;
+  background: rgba(64, 44, 160, 0.64);
+  display: flex;
+  max-width: 80%;
+  flex-direction: column;
+  color: #fff;
+  padding: 5%;
+  z-index: 0;
+}
+
+.poi__cover {
+  background-attachment: fixed;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100vh;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+
+  h1 {
+    color: #fff;
+    font-weight: 900;
+    font-size: 52px;
+  }
+}
+
+.poi__cover-gradient {
+  background: -webkit-linear-gradient(
+    top,
+    rgba(0, 0, 0, 0.4) 0%,
+    transparent 60%
+  );
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  z-index: 0;
+}
+
+.poi__overlay {
+  height: 100vh;
+  background: fade(#fff, 90%);
+}
+
+.poi__content {
+  margin-top: 5%;
+}
+
+.poi__menu {
+  a {
+    margin-right: 10px;
+  }
+}
