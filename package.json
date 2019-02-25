@@ -83,6 +83,7 @@
     "graphql-tag": "^2.8.0",
     "graphql-tools": "^2.24.0",
     "history": "^3.0.0",
+    "leaflet": "^1.4.0",
     "lodash": "^4.17.4",
     "node-qrcode": "^0.0.4",
     "prop-types": "^15.6.2",
@@ -91,9 +92,11 @@
     "react-apollo": "^2.1.4",
     "react-dom": "16.4.1",
     "react-flexbox-grid": "^2.1.2",
+    "react-leaflet": "^2.2.1",
     "react-multi-clamp": "^1.1.0",
     "react-responsive": "^5.0.0",
     "react-router-dom": "^4.3.1",
+    "react-scroll": "^1.7.11",
     "unfetch": "^3.0.0"
   }
 }

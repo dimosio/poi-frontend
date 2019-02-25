@@ -1,15 +1,72 @@
-export default class Map extends React.Component {
-  // componentDidMount() {
-  //   this.map = window.mapfit.MapView('mapfit', {
-  //     theme: 'night',
-  //     maxZoon: 14
-  //   });
-  //   this.map.setZoom(13);
-  //   // set map center with coordinate
-  //   this.map.setCenter([40.637, 22.951]);
-  // }
+import { graphql, compose } from 'react-apollo';
+import { Link } from 'react-router-dom';
+// import * as L from 'leaflet';
+import React, { Component } from 'react';
+import { Map as LeafletMap, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Card } from 'antd';
+import { FETCH_POIS } from 'gql/poi';
+// import pin from '../../assets/pin.png';
+import './style.less';
+
+// const pinIcon = L.icon({
+//   iconUrl: pin,
+//   iconSize: [38, 55], // size of the icon
+//   shadowSize: [50, 64], // size of the shadow
+//   iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+//   shadowAnchor: [4, 62], // the same for the shadow
+//   popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+// });
+
+class Map extends Component {
+  static propTypes = {
+    fetchPois: PropTypes.object
+  };
+
+  state = {
+    lat: 40.634796,
+    lng: 22.948409,
+    zoom: 15
+  };
 
   render() {
-    return <div id='mapfit' />;
+    const { fetchPois } = this.props;
+    const position = [this.state.lat, this.state.lng];
+    return (
+      <LeafletMap
+        style={{ height: '100vh' }}
+        center={position}
+        zoom={this.state.zoom}
+        zoomControl={false}
+      >
+        <TileLayer
+          attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+        />
+        {fetchPois.pois &&
+          !fetchPois.loading &&
+          fetchPois.pois.map(poi => (
+            <Marker position={poi.location.coordinates}>
+              <Popup className='map__popup'>
+                <Card
+                  className='map__popup-card'
+                  bordered={false}
+                  cover={<img alt={poi.name} src={poi.cover_image} />}
+                >
+                  <Card.Meta
+                    title={poi.name}
+                    description={<Link to={`/poi/${poi.id}`}>Read more</Link>}
+                  />
+                </Card>
+              </Popup>
+            </Marker>
+          ))}
+      </LeafletMap>
+    );
   }
 }
+
+export default compose(
+  graphql(FETCH_POIS, {
+    name: 'fetchPois'
+  })
+)(Map);
