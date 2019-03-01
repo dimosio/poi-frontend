@@ -1,7 +1,7 @@
 import { graphql, compose } from 'react-apollo';
-import { Link } from 'react-router-dom';
 import * as L from 'leaflet';
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import MapBoxGLLayer from '../../mapbox';
 import { Map as LeafletMap, Marker, Popup } from 'react-leaflet';
 import { Card } from 'antd';
@@ -18,12 +18,13 @@ const pinIcon = L.icon({
   shadowSize: [100, 64], // size of the shadow
   iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
   shadowAnchor: [4, 62], // the same for the shadow
-  popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+  popupAnchor: [-6, -100] // point from which the popup should open relative to the iconAnchor
 });
 
 class Map extends Component {
   static propTypes = {
-    fetchPois: PropTypes.object
+    fetchPois: PropTypes.object,
+    history: PropTypes.object
   };
 
   state = {
@@ -33,7 +34,7 @@ class Map extends Component {
   };
 
   render() {
-    const { fetchPois } = this.props;
+    const { fetchPois, history } = this.props;
     const position = [this.state.lat, this.state.lng];
     return (
       <LeafletMap
@@ -51,16 +52,15 @@ class Map extends Component {
           fetchPois.pois.map(poi => (
             <Marker icon={pinIcon} position={poi.location.coordinates}>
               <Popup className='map__popup'>
-                <Card
-                  className='map__popup-card'
-                  bordered={false}
-                  cover={<img alt={poi.name} src={poi.cover_image} />}
-                >
-                  <Card.Meta
-                    title={poi.name}
-                    description={<Link to={`/poi/${poi.id}`}>Read more</Link>}
-                  />
-                </Card>
+                <div onClick={() => history.push(`/poi/${poi.id}`)}>
+                  <Card
+                    className='map__popup-card'
+                    bordered={false}
+                    cover={<img alt={poi.name} src={poi.cover_image} />}
+                  >
+                    <Card.Meta title={poi.name} />
+                  </Card>
+                </div>
               </Popup>
             </Marker>
           ))}
@@ -70,6 +70,7 @@ class Map extends Component {
 }
 
 export default compose(
+  withRouter,
   graphql(FETCH_POIS, {
     name: 'fetchPois'
   })
