@@ -1,39 +1,56 @@
-import { Menu, Dropdown } from 'antd';
-
-const menu = (
-  <Menu>
-    <Menu.Item>
-      <a
-        target='_blank'
-        rel='noopener noreferrer'
-        href='http://www.alipay.com/'
-      >
-        Account
-      </a>
-    </Menu.Item>
-    <Menu.Item>
-      <a
-        target='_blank'
-        rel='noopener noreferrer'
-        href='http://www.taobao.com/'
-      >
-        Provide Feedback
-      </a>
-    </Menu.Item>
-    <Menu.Item>
-      <a target='_blank' rel='noopener noreferrer' href='http://www.tmall.com/'>
-        About us
-      </a>
-    </Menu.Item>
-  </Menu>
-);
+const COMPONENT = 'c-menu';
 
 export default class AppMenu extends React.Component {
   render() {
     return (
-      <Dropdown className='menu' overlay={menu}>
-        <div>Menu</div>
-      </Dropdown>
+      <div className={COMPONENT}>
+        <input
+          className={`${COMPONENT}__input`}
+          type='checkbox'
+          id={COMPONENT}
+        />
+        <label className={`${COMPONENT}__label`} htmlFor={COMPONENT}>
+          <span className={`${COMPONENT}__bar ${COMPONENT}__bar--top`} />
+          <span className={`${COMPONENT}__bar ${COMPONENT}__bar--middle`} />
+          <span className={`${COMPONENT}__bar ${COMPONENT}__bar--bottom`} />
+        </label>
+        <aside>
+          <div
+            className={`${COMPONENT}__aside-section ${COMPONENT}__aside-left`}
+          >
+            <div className={`${COMPONENT}__aside-content`}>
+              <p> Some text that will make you click the cta </p>
+              <button className='button'> CTA </button>
+            </div>
+          </div>
+          <div
+            className={`${COMPONENT}__aside-section ${COMPONENT}__aside-right`}
+          >
+            <ul className={`${COMPONENT}__aside-list`}>
+              <li>
+                <a href='' className={`${COMPONENT}__aside-anchor`}>
+                  Create your POI
+                </a>
+              </li>
+              <li>
+                <a href='' className={`${COMPONENT}__aside-anchor`}>
+                  About us
+                </a>
+              </li>
+              <li>
+                <a href='' className={`${COMPONENT}__aside-anchor`}>
+                  Support
+                </a>
+              </li>
+              <li>
+                <a href='' className={`${COMPONENT}__aside-anchor`}>
+                  Logout
+                </a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </div>
     );
   }
 }

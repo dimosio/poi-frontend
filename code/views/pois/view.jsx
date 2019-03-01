@@ -2,6 +2,7 @@ import { withRouter } from 'react-router-dom';
 import { graphql, compose } from 'react-apollo';
 import { Link, Element } from 'react-scroll';
 import { Row, Col, Modal } from 'antd';
+import closeIcon from '../../assets/close-icon.png';
 import { FETCH_POI } from 'gql/poi';
 import QRCode from 'qrcode';
 
@@ -10,7 +11,7 @@ import './view.pcss';
 class PoiView extends React.Component {
   static propTypes = {
     fetchPoi: PropTypes.object,
-    history: PropTypes.func
+    history: PropTypes.object
   };
 
   state = {
@@ -30,13 +31,16 @@ class PoiView extends React.Component {
 
   render() {
     const { qrCode } = this.state;
-    const { fetchPoi } = this.props;
+    const { fetchPoi, history } = this.props;
     if (!fetchPoi.pois) {
       return null;
     }
     const poi = fetchPoi.pois[0];
     return (
       <div>
+        <div className='poi__close' onClick={() => history.push('/')}>
+          <img src={closeIcon} alt='close-icon' />
+        </div>
         <div
           style={{
             backgroundImage: `url("${poi.cover_image}")`
