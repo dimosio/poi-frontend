@@ -1,12 +1,23 @@
 .poi__intro {
-  margin: auto;
+  margin: auto 0 auto auto;
   background: rgba(64, 44, 160, 0.64);
   display: flex;
   max-width: 80%;
   flex-direction: column;
   color: #fff;
-  padding: 5%;
+  padding: 5% 10% 5% 5%;
   z-index: 0;
+}
+
+.poi__close {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 999;
+  cursor: pointer;
+  img {
+    width: 24px;
+  }
 }
 
 .poi__cover {
