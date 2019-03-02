@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 const COMPONENT = 'c-menu';
 
 export default class AppMenu extends React.Component {
@@ -19,8 +20,8 @@ export default class AppMenu extends React.Component {
             className={`${COMPONENT}__aside-section ${COMPONENT}__aside-left`}
           >
             <div className={`${COMPONENT}__aside-content`}>
-              <p> Some text that will make you click the cta </p>
-              <button className='button'> CTA </button>
+              <p> We need your feedback! </p>
+              <button className='button'> Let's talk </button>
             </div>
           </div>
           <div
@@ -28,19 +29,19 @@ export default class AppMenu extends React.Component {
           >
             <ul className={`${COMPONENT}__aside-list`}>
               <li>
-                <a href='' className={`${COMPONENT}__aside-anchor`}>
+                <Link to='/poi/create' className={`${COMPONENT}__aside-anchor`}>
                   Create your POI
-                </a>
+                </Link>
               </li>
               <li>
-                <a href='' className={`${COMPONENT}__aside-anchor`}>
+                <Link to='' className={`${COMPONENT}__aside-anchor`}>
                   About us
-                </a>
+                </Link>
               </li>
               <li>
-                <a href='' className={`${COMPONENT}__aside-anchor`}>
+                <Link to='' className={`${COMPONENT}__aside-anchor`}>
                   Support
-                </a>
+                </Link>
               </li>
               <li>
                 <a href='' className={`${COMPONENT}__aside-anchor`}>
