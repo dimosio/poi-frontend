@@ -1,12 +1,12 @@
 {
   "private": true,
-  "title": "geekbot.io",
-  "name": "geekbot.io",
+  "title": "locus-frontend",
+  "name": "locus-frontend",
   "version": "1.0.0",
-  "description": "The first ever slackbot assistant that helps you set up real asynchronous stand up meetings inside slack.",
+  "description": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/HumanWorks/geekbot"
+    "url": "https://github.com/dimosio/poi-frontend"
   },
   "engines": {
     "node": ">=6.11.5",
