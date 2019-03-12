@@ -3,6 +3,8 @@ import { setContext } from 'apollo-link-context';
 import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
 
+const anonymous = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwczovL2hhc3VyYS5pby9qd3QvY2xhaW1zIjp7IngtaGFzdXJhLWFsbG93ZWQtcm9sZXMiOlsiYW5vbnltb3VzIl0sIngtaGFzdXJhLWRlZmF1bHQtcm9sZSI6ImFub255bW91cyIsIngtaGFzdXJhLXVzZXItaWQiOiIifX0.Kn1YNc0Tc9pSSGC4CH61QvQv6zXjy5dGd67ga2iYkxCdVP_PVzvddWkAH_mF2S-PWe_gZz_e5G64aajH045S5nVDxvA9-sIgIIOAINuJ-tmPFMFqSY77lI-BjosUpuZs8zz-KSjpsybTeIM3f9fK1TbEPO45HZTfmJBKmhAnSZU';
+
 const httpLink = new HttpLink({
   uri: __DEVELOPMENT__
     ? 'http://localhost:8080/v1alpha1/graphql'
@@ -16,7 +18,7 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      Authorization: `Bearer ${token ? token : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxIiwiaHR0cHM6Ly9oYXN1cmEuaW8vand0L2NsYWltcyI6eyJ4LWhhc3VyYS1hbGxvd2VkLXJvbGVzIjpbImFkbWluIl0sIngtaGFzdXJhLWRlZmF1bHQtcm9sZSI6ImFkbWluIiwieC1oYXN1cmEtdXNlci1pZCI6IjEifX0.5BGydc8F3L_czPP17JkKLFvd0ZeXbyALDej8grbVHSw'}`
+      Authorization: `Bearer ${token ? token : anonymous}`
     }
   };
 });
