@@ -20,6 +20,7 @@ export const POI_DATA = gql`
     info_history
     info_others
     info_references
+    location
     website
     cover_image
   }
