@@ -12,6 +12,14 @@ export const FETCH_USER = gql`
   ${USER_DATA}
 `;
 
+export const ME = gql`
+  query me {
+    me {
+      id
+    }
+  }
+`;
+
 export const UPDATE_USER = gql`
   mutation update_users(
     $id: Int!
@@ -41,6 +49,22 @@ export const SIGNUP = gql`
       username: $username,
       password: $password
     ){
+      token
+    }
+  }
+`;
+
+export const LOGIN = gql`
+  mutation login(
+    $email: String,
+    $username: String,
+    $password: String
+  ) {
+    login(
+      email: $email,
+      username: $username,
+      password: $password
+    ) {
       token
     }
   }
