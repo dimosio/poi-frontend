@@ -1,17 +1,25 @@
 import { Form, Input, Button } from 'antd';
 
-class AccountInfo extends React.Component {
+class SignupForm extends React.Component {
   static propTypes = {
     form: PropTypes.object,
-    loggedInUser: PropTypes.object
+    user: PropTypes.object,
+    onSubmit: PropTypes.func
+  };
+
+  handleSubmit = e => {
+    const { onSubmit } = this.props;
+    e.preventDefault();
+    this.props.form.validateFieldsAndScroll((err, values) => {
+      if (err) {
+        return;
+      }
+      onSubmit(values);
+    });
   };
 
   render() {
-    const { loggedInUser } = this.props;
     const { getFieldDecorator } = this.props.form;
-    if (!loggedInUser.users) {
-      return null;
-    }
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
@@ -34,12 +42,12 @@ class AccountInfo extends React.Component {
         }
       }
     };
-    const user = loggedInUser.users[0];
+
     return (
       <Form onSubmit={this.handleSubmit}>
         <Form.Item {...formItemLayout} label={<span>Username</span>}>
           {getFieldDecorator('username', {
-            initialValue: user.username,
+            initialValue: '',
             rules: [
               {
                 required: true,
@@ -50,7 +58,7 @@ class AccountInfo extends React.Component {
         </Form.Item>
         <Form.Item {...formItemLayout} label={<span>Email</span>}>
           {getFieldDecorator('email', {
-            initialValue: user.email,
+            initialValue: '',
             rules: [
               {
                 required: true,
@@ -61,7 +69,7 @@ class AccountInfo extends React.Component {
         </Form.Item>
         <Form.Item {...formItemLayout} label={<span>Password</span>}>
           {getFieldDecorator('password', {
-            initialValue: user.password,
+            initialValue: '',
             rules: [
               {
                 required: true,
@@ -72,18 +80,18 @@ class AccountInfo extends React.Component {
         </Form.Item>
         <Form.Item {...formItemLayout} label={<span>Repeat password</span>}>
           {getFieldDecorator('repeat-password', {
-            initialValue: user.password,
+            initialValue: '',
             rules: [
               {
                 required: true,
-                message: 'Please input your password'
+                message: 'Please repeat your password'
               }
             ]
           })(<Input type='password' />)}
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
           <Button type='primary' htmlType='submit'>
-            Update
+            Create account
           </Button>
         </Form.Item>
       </Form>
@@ -91,4 +99,6 @@ class AccountInfo extends React.Component {
   }
 }
 
-export default Form.create({ name: 'account_info' })(AccountInfo);
+export const WrappedSignupForm = Form.create({ name: 'user_insert' })(
+  SignupForm
+);

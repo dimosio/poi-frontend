@@ -4,7 +4,6 @@ export const USER_DATA = gql`
   fragment user_data on users {
     id
     username
-    password
     email
     avatar
   }
@@ -16,6 +15,7 @@ export const POI_DATA = gql`
     name
     info_general
     info_architecture
+    info_events
     info_history
     info_others
     info_references

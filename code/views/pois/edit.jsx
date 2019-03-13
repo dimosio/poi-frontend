@@ -66,12 +66,13 @@ class PoiEdit extends React.Component {
               id
             }
           });
+
+
           const newCollection = [
-            ...stored.pois,
-            ...data.update_pois.returning[0]
+            data.update_pois.returning[0]
           ];
           stored.pois = newCollection;
-          store.writeQuery({ query: FETCH_POI, data: stored });
+          store.writeQuery({ query: FETCH_POI, data: stored, variables: { id } });
           history.push('/');
         } catch (e) {
           throw e;
