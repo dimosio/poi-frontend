@@ -24,11 +24,9 @@ class PoiCreate extends React.Component {
       website,
       cover_image
     } = values;
-    const authorId = 2;
     insertPoi({
       variables: {
         name,
-        authorId,
         info_architecture,
         info_events,
         info_general,
@@ -46,7 +44,6 @@ class PoiCreate extends React.Component {
               id: null,
               __typename: 'pois',
               name,
-              authorId,
               info_architecture,
               info_events,
               info_general,

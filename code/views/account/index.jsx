@@ -1,7 +1,4 @@
-import { compose } from 'react-apollo';
 import { Form, Input, Button } from 'antd';
-
-import { fetchUserToProps } from '../../utils';
 
 class AccountInfo extends React.Component {
   static propTypes = {
@@ -94,6 +91,4 @@ class AccountInfo extends React.Component {
   }
 }
 
-export default compose(fetchUserToProps())(
-  Form.create({ name: 'account_info' })(AccountInfo)
-);
+export default Form.create({ name: 'account_info' })(AccountInfo);

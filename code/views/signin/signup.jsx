@@ -1,13 +1,11 @@
 import { Form, Input, Button } from 'antd';
 
-
 class SignupForm extends React.Component {
   static propTypes = {
     form: PropTypes.object,
     user: PropTypes.object,
     onSubmit: PropTypes.func
   };
-
 
   handleSubmit = e => {
     const { onSubmit } = this.props;
@@ -22,9 +20,6 @@ class SignupForm extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    // if (!loggedInUser.users) {
-    //   return null;
-    // }
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
@@ -83,9 +78,20 @@ class SignupForm extends React.Component {
             ]
           })(<Input type='password' />)}
         </Form.Item>
+        <Form.Item {...formItemLayout} label={<span>Repeat password</span>}>
+          {getFieldDecorator('repeat-password', {
+            initialValue: '',
+            rules: [
+              {
+                required: true,
+                message: 'Please repeat your password'
+              }
+            ]
+          })(<Input type='password' />)}
+        </Form.Item>
         <Form.Item {...tailFormItemLayout}>
           <Button type='primary' htmlType='submit'>
-            Sign up
+            Create account
           </Button>
         </Form.Item>
       </Form>
