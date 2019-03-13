@@ -44,7 +44,11 @@ export default class AppMenu extends React.Component {
                 </Link>
               </li>
               <li>
-                <a href='' className={`${COMPONENT}__aside-anchor`}>
+                <a
+                  href='#'
+                  onClick={() => localStorage.removeItem('token')}
+                  className={`${COMPONENT}__aside-anchor`}
+                >
                   Logout
                 </a>
               </li>
