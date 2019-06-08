@@ -6,7 +6,7 @@ import closeIcon from '../../assets/close-icon.png';
 import { FETCH_POI } from 'gql/poi';
 import QRCode from 'qrcode';
 
-import './view.pcss';
+import './view.less';
 
 class PoiView extends React.Component {
   static propTypes = {
@@ -86,7 +86,7 @@ class PoiView extends React.Component {
             </Row> */}
             {poi.info_general && (
               <Row>
-                <Col span={12} offset={6}>
+                <Col xs={{ span:18, offset: 2}} span={12} offset={6}>
                   <h3 id='general'>Γενικές Πληροφορίες</h3>
                   <p>
                     <span>{poi.info_general}</span>
