@@ -5,7 +5,7 @@ import { HttpLink } from 'apollo-link-http';
 
 const httpLink = new HttpLink({
   uri: __DEVELOPMENT__
-    ? 'http://localhost:8080/v1alpha1/graphql'
+    ? 'https://api.locus.dimos.io/v1alpha1/graphql'
     : 'https://api.locus.dimos.io/v1alpha1/graphql'
 });
 

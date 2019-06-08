@@ -13,7 +13,7 @@
     "npm": "^3.8.3"
   },
   "scripts": {
-    "start": "npm run clean && NODE_ENV=development webpack-dev-server --progress --colors --config ./config/webpack.dev.js",
+    "start": "npm run clean && SET NODE_ENV=aaaa && webpack-dev-server --progress --colors --config ./config/webpack.dev.js",
     "build": "NODE_ENV=production webpack --config ./config/webpack.prod.js",
     "clean": "rimraf ./config/webpack_cache",
     "lint": "eslint --config ./.eslintrc ./code/js/modules/"
