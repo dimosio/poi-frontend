@@ -85,7 +85,7 @@
     "graphql-tools": "^2.24.0",
     "history": "^3.0.0",
     "leaflet": "^1.4.0",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.21",
     "mapbox-gl": "^0.53.1",
     "mapbox-gl-leaflet": "^0.0.4",
     "prop-types": "^15.6.2",
